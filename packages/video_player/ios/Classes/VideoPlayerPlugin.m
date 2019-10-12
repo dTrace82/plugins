@@ -499,6 +499,11 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
       [player setVolume:[argsMap[@"volume"] doubleValue]];
       result(nil);
     } else if ([@"play" isEqualToString:call.method]) {
+            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
+                                                 withOptions:AVAudioSessionCategoryOptionMixWithOthers
+                                                       error:nil];
+
+                [[AVAudioSession sharedInstance] setActive:TRUE error:nil];
       [player play];
       result(nil);
     } else if ([@"position" isEqualToString:call.method]) {
